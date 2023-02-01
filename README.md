@@ -1,27 +1,28 @@
-# docker-laravel-vue
-To get started, cd into the laravel folder and run docker-compose up.
+# 開始運行
 
-# Getting started
-install docker desktop
+## 安裝Docker
+`yum remove podman buildah`
+`sudo yum install -y yum-utils`
+`yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo`
+`yum update`
+`yum install docker-ce docker-ce-cli containerd.io`
+`systemctl enable docker`
 
-`cd into the laravel folder`
+##安裝Docker composer
+`curl -L "https://github.com/docker/compose/releases/download/1.27.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose`
+`chmod +x /usr/local/bin/docker-compose`
+`ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose`
 
-`run docker-compose up`
+##部屬
+`docker-composer up`
 
 `run docker-compose exec laravel composer install`
 
-`run docker-compose exec laravel composer dump-autoload`
+`run docker-compose exec laravel cp .env.example .env`
 
-`run docker-compose exec laravel php artisan migrate:fresh`
+`run docker-compose exec laravel chmod -R 777 /var/www/html/storage`
 
 # Routes
 
-Laravel api uses localhost/api as the base url.
+Laravel api localhost/api as the base url.
 VueJS app uses localhost:8080 for live development.
-When deploying to production, VueJS routes will be served at localhost through an nginx proxy container, no need for adding the port.
-
-# For Production Deployment
-Uncomment the lines in vue.dockerfile comment out what isn't uncommented.
-
-# Note: Windows
- Permissions errors when running docker on windows with laravel happen due to file ownership differences in your project folder vs inside the docker container. I've added a user in docker.compose under laravel to fix this error. No need for chmod or chown commands.
