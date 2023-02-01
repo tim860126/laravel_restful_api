@@ -26,13 +26,13 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 ## 部屬
 ```
-docker-composer up
+docker-compose up -d
 
-run docker-compose exec laravel composer install
+docker-compose exec laravel composer install
 
-run docker-compose exec laravel cp .env.example .env
+docker-compose exec laravel cp .env.example .env
 
-run docker-compose exec laravel chmod -R 777 /var/www/html/storage
+docker-compose exec laravel chmod -R 777 /var/www/html/storage
 ```
 
 # Routes
