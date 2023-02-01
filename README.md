@@ -24,6 +24,23 @@ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 ```
 
+## vue NodeModule目前無法透過dockerfile npm install 會出現timeout 救命
+
+### 出此下策需在外面先安裝node npm
+
+```
+curl -sL https://rpm.nodesource.com/setup_18.x | bash -
+
+dnf install nodejs
+
+npm install -g npm@9.1.2
+
+![](https://i.imgur.com/4ei8ULP.png)
+
+npm install --fetch-timeout=600000
+
+```
+
 ## 部屬
 ```
 docker-compose up -d
