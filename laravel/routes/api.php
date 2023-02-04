@@ -19,6 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/test', function () {
-    $event['test']=1234234;
+    $event['test']=1234232344;
     return response()->json($event,200);
 });
