@@ -7,7 +7,7 @@ COPY composer.lock composer.json /var/www/html/
 WORKDIR /var/www/html/
 
 # Install dependencies for the operating system software
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y && apt install -y libicu-dev \
     build-essential \
     libpng-dev \
     zip \
@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y \
 # Install extensions for php
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install gd
+RUN docker-php-ext-configure intl 
+RUN docker-php-ext-install intl
 
 # Install composer (php package manager)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer

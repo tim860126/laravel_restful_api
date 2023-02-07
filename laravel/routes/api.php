@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AnimalController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,3 +22,5 @@ Route::get('/test', function () {
     $event['test']=1234232344;
     return response()->json($event,200);
 });
+
+Route::apiResource('animals',AnimalController::class);
